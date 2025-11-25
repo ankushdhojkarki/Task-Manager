@@ -27,8 +27,19 @@ This project implements robust role-based access control (RBAC) and full CRUD fu
 
 ## 🚀 Setup and Installation
 
-Follow these steps to get the Task Manager project running locally.PrerequisitesPython 3.8+Git1. Clone the RepositoryBashgit clone https://github.com/YourUsername/Task-Manager.git
+Follow these steps to get the Task Manager project running locally.
+
+### Prerequisites
+
+* Python 3.8+
+* Git
+
+### 1. Clone the Repository
+
+```bash
+git clone [https://github.com/YourUsername/Task-Manager.git](https://github.com/YourUsername/Task-Manager.git)
 cd Task-Manager
+
 2. Create and Activate Virtual EnvironmentBash# Create a virtual environment
 python -m venv venv
 
