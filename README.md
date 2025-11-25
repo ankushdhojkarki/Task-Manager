@@ -23,6 +23,8 @@ This project implements robust role-based access control (RBAC) and full CRUD fu
 * **Database:** SQLite (default for development)
 * **Authentication:** Django built-in `django.contrib.auth`
 
+---
+
 ## 🚀 Setup and Installation
 
 Follow these steps to get the Task Manager project running locally.
