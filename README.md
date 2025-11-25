@@ -37,10 +37,13 @@ Follow these steps to get the Task Manager project running locally.
 ### 1. Clone the Repository
 
 ```bash
-git clone [https://github.com/YourUsername/Task-Manager.git](https://github.com/YourUsername/Task-Manager.git)
+git clone https://github.com/YourUsername/Task-Manager.git
 cd Task-Manager
 
-2. Create and Activate Virtual EnvironmentBash# Create a virtual environment
+### 2. Create and Activate Virtual Environment
+
+```bash
+# Create a virtual environment
 python -m venv venv
 
 # Activate the virtual environment
@@ -48,11 +51,77 @@ python -m venv venv
 .\venv\Scripts\Activate
 # On Linux/macOS:
 source venv/bin/activate
-3. Install DependenciesInstall the necessary Python packages:Bashpip install Django
-(If you used a requirements.txt file, use pip install -r requirements.txt)4. Database SetupRun migrations to create the database tables, including the Task model and the default Django authentication tables.Bashpython manage.py migrate
-5. Create Users (Admin & Employee)You need at least one Superuser (Admin) and one regular user (Employee) for testing:A. Create Superuser (Admin)Bashpython manage.py createsuperuser
+
+### 3. Install Dependencies
+
+Install the necessary Python packages:
+
+```bash
+pip install Django
+
+### 4. Database Setup
+
+Run migrations to create the database tables, including the Task model and the default Django authentication tables.
+
+```bash
+python manage.py migrate
+
+### 5. Create Users (Admin & Employee)
+
+You need at least one Superuser (Admin) and one regular user (Employee) for testing:
+
+#### A. Create Superuser (Admin)
+
+```bash
+python manage.py createsuperuser
 # Follow prompts to create username (e.g., 'admin') and password.
-B. Create Regular User (Employee)Bashpython manage.py createsuperuser # Yes, use this to create the regular user
+
+#### B. Create Regular User (Employee)
+
+```bash
+python manage.py createsuperuser # Yes, use this to create the regular user
 # Follow prompts to create username (e.g., 'test_employee') and password.
-6. Assign Roles (Groups)You must now use the Django Admin interface to assign the roles:Start the server: python manage.py runserverGo to http://127.0.0.1:8000/admin and log in with your Superuser.Navigate to the Groups section.Create two new groups: Admin and Employee.Navigate to the Users section.Edit the users you created:Add the Admin group to the Superuser (admin).Add the Employee group to the regular user (test_employee).7. Run the ApplicationStart the development server:Bashpython manage.py runserver
-You can now access the application at http://127.0.0.1:8000/accounts/login/.🔒 Testing and WorkflowUserLogin URLExpected RedirectionKey FunctionalityAdmin/accounts/login// (Admin Dashboard)Full CRUD on all tasks.Employee/accounts/login// (Employee Dashboard)View only assigned tasks; Update task status.
+
+### 6. Assign Roles (Groups)
+
+You must now use the Django Admin interface to assign the roles:
+
+1.  Start the server: 
+    ```bash
+    python manage.py runserver
+    ```
+2.  Go to `http://127.0.0.1:8000/admin` and log in with your Superuser.
+3.  Navigate to the **Groups** section.
+4.  Create two new groups: **`Admin`** and **`Employee`**.
+5.  Navigate to the **Users** section.
+6.  Edit the users you created:
+    * Add the **`Admin`** group to the Superuser (`admin`).
+    * Add the **`Employee`** group to the regular user (`test_employee`).
+
+### 7. Run the Application
+
+Start the development server:
+
+```bash
+python manage.py runserver
+You can now access the application at `http://127.0.0.1:8000/accounts/login/`.
+
+## 🔒 Testing and Workflow
+
+| User | Login URL | Expected Redirection | Key Functionality |
+| :--- | :--- | :--- | :--- |
+| **Admin** | `/accounts/login/` | `/` (Admin Dashboard) | Full CRUD on all tasks. |
+| **Employee** | `/accounts/login/` | `/` (Employee Dashboard) | View only assigned tasks; Update task status. |
+
+## 📄 File Structure Highlights
+
+| File/Path | Purpose |
+| :--- | :--- |
+| `tasks/models.py` | Defines the `Task` model and `STATUS_CHOICES`. |
+| `accounts/models.py` | Contains helper functions (`is_admin`, `is_employee`) for role checking. |
+| `accounts/decorators.py` | Defines the custom `@admin_required` decorator. |
+| `tasks/views.py` | Contains all view logic, including role-based `home_view`, Admin CRUD, and Employee Update. |
+| `tasks/urls.py` | Routes all custom paths, using the `/dashboard/tasks/` prefix for Admin views. |
+| `templates/registration/login.html` | Custom login page template. |
+| `tasks/templates/tasks/` | Contains all dashboard and task management templates. |
+
