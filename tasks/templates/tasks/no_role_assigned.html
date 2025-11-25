@@ -1,0 +1,33 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>No Role Assigned</title>
+</head>
+<body>
+    <h1>Access Denied: No Role Assigned</h1>
+    <p>Welcome, {{ user.username }}.</p>
+    <p>Your user account currently does not have an assigned role (Admin or Employee) required to view a dashboard. Please contact your system administrator.</p>
+
+    <hr>
+    
+    <h2>Options</h2>
+    <ul>
+        <li>
+            <form method="post" action="{% url 'logout' %}">
+                {% csrf_token %}
+                <button type="submit" style="border: none; background: none; color: red; cursor: pointer; padding: 0; text-decoration: underline;">
+                    Log Out
+                </button>
+            </form>
+        </li>
+    </ul>
+
+</body>
+</html>
+
+{% endblock content %}

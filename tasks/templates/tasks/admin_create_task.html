@@ -1,0 +1,16 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<h1>Admin: Create New Task</h1>
+<form method="POST">
+    {% csrf_token %} 
+
+    {{ form.as_p }} 
+
+    <button type="submit">Create Task</button>
+</form>
+<p><a href="{% url 'admin_task_list' %}">Cancel and View List</a></p>
+
+{% endblock content %}

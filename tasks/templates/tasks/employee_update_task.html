@@ -1,0 +1,19 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<h1>Update Task Status: "{{ task.title }}"</h1>
+<p>Current Status: <strong>{{ task.status }}</strong></p>
+
+<form method="POST">
+    {% csrf_token %} 
+    
+    {{ form.as_p }} 
+    
+    <button type="submit">Save Status</button>
+</form>
+
+<p><a href="{% url 'home' %}">Cancel and Go Back to Dashboard</a></p>
+
+{% endblock content %}

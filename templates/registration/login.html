@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<h1>Task Manager Login</h1>
+
+<form method="post">
+    {% csrf_token %} 
+    
+    {{ form.as_p }} 
+    
+    <input type="hidden" name="next" value="{{ next }}">
+
+    <button type="submit">Log In</button>
+</form>
+
+<p>
+    <a href="#">Forgot password? (Not implemented yet)</a>
+</p>
+
+{% endblock content %}

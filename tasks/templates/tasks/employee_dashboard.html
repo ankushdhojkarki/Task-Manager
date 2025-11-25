@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<h1>Employee Dashboard: My Tasks</h1>
+<p>Welcome, {{ user.username }}! Here are the tasks assigned to you.</p>
+<form method="post" action="{% url 'logout' %}">
+    {% csrf_token %}
+    <button type="submit" style="border: none; background: none; color: blue; cursor: pointer; padding: 0; text-decoration: underline;">
+        Logout
+    </button>
+</form>
+<hr>
+
+{% if tasks %}
+<table border="1" cellpadding="10">
+    <thead>
+        <tr>
+            <th>Title</th>
+            <th>Deadline</th>
+            <th>Description</th>
+            <th>Status</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+    <tbody>
+    {% for task in tasks %}
+        <tr>
+            <td>{{ task.title }}</td>
+            <td>{{ task.deadline_date|date:"Y-m-d" }}</td>
+            <td>{{ task.description|truncatechars:50 }}</td>
+            <td><strong>{{ task.status }}</strong></td>
+            <td>
+                <a href="{% url 'employee_update_task' task.id %}">Update Status</a>
+            </td>
+        </tr>
+    {% endfor %}
+    </tbody>
+</table>
+{% else %}
+    <p>You currently have no tasks assigned.</p>
+{% endif %}
+
+{% endblock content %}

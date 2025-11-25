@@ -1,0 +1,43 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<h1>Admin: All Tasks Overview</h1>
+<p>
+  <a href="{% url 'admin_create_task' %}">➕ Create New Task</a> |
+  <a href="{% url 'home' %}">⬅️ Back to Dashboard</a>
+</p>
+<hr />
+
+{% if tasks %}
+<table border="1" cellpadding="10">
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Assigned To</th>
+      <th>Status</th>
+      <th>Deadline</th>
+      <th>Actions</th>
+    </tr>
+  </thead>
+  <tbody>
+    {% for task in tasks %}
+    <tr>
+      <td>{{ task.title }}</td>
+      <td>{{ task.assigned_to.username|default:"Unassigned" }}</td>
+      <td>{{ task.status }}</td>
+      <td>{{ task.deadline_date|date:"Y-m-d" }}</td>
+      <td>
+        <a href="{% url 'admin_edit_task' task.id %}">View/Edit</a> |
+        <a href="{% url 'admin_delete_task' task.id %}">Delete</a>
+      </td>
+    </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{% else %}
+<p>No tasks have been created yet.</p>
+{% endif %}
+
+{% endblock content %}

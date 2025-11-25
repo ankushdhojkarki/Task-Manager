@@ -1,0 +1,18 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+
+<h1>Admin: Confirm Delete</h1>
+<p>Are you sure you want to delete the task: 
+    <strong>"{{ task.title }}"</strong>?
+</p>
+
+<form method="POST">
+    {% csrf_token %}
+    <button type="submit" style="background-color: red; color: white;">Yes, Delete This Task</button>
+</form>
+
+<p><a href="{% url 'admin_task_list' %}">No, Cancel</a></p>
+
+{% endblock content %}

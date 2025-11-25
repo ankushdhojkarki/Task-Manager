@@ -1,0 +1,21 @@
+{% extends 'base.html' %} 
+
+{% block content %}
+
+<h1>Admin Dashboard </h1>
+<p>Welcome, Admin! What would you like to do?</p>
+<ul>
+    <li>
+        <a href="{% url 'admin_task_list' %}">Manage All Tasks (View, Create, Edit, Delete)</a>
+    </li>
+    <li>
+        <form method="post" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type="submit" style="border: none; background: none; color: blue; cursor: pointer; padding: 0; text-decoration: underline;">
+                Logout
+            </button>
+        </form>
+    </li>
+</ul>
+
+{% endblock content %}
