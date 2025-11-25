@@ -39,3 +39,15 @@ Follow these steps to get the Task Manager project running locally.
 ```bash
 git clone [https://github.com/YourUsername/Task-Manager.git](https://github.com/YourUsername/Task-Manager.git)
 cd Task-Manager
+
+### 2. Create and Activate Virtual Environment
+
+```bash
+# Create a virtual environment
+python -m venv venv
+
+# Activate the virtual environment
+# On Windows (PowerShell):
+.\venv\Scripts\Activate
+# On Linux/macOS:
+source venv/bin/activate
